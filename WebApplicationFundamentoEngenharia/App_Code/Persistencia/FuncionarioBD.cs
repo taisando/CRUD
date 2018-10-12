@@ -17,9 +17,10 @@ namespace WebApplicationFundamentoEngenharia.App_Code.Persistencia
         {
             System.Data.IDbConnection objConexao;
             System.Data.IDbCommand objCommand;
-            string sql = "INSERT INTO tbl_funcionario(fun_nome, fun_salario, fun_cracha) VALUES (?nome, ?salario, ?cracha)";
+            string sql = "INSERT INTO tbl_funcionario(fun_codigo, fun_nome, fun_salario, fun_cracha) VALUES (?nome, ?salario, ?cracha)";
             objConexao = Mapped.Connection();
             objCommand = Mapped.Command(sql, objConexao);
+            objCommand.Parameters.Add(Mapped.Parameter("?codigo", funcionario.Codigo));
             objCommand.Parameters.Add(Mapped.Parameter("?nome", funcionario.Nome));
             objCommand.Parameters.Add(Mapped.Parameter("?salario", funcionario.Salario));
             objCommand.Parameters.Add(Mapped.Parameter("?cracha", funcionario.Cracha));
@@ -112,7 +113,8 @@ namespace WebApplicationFundamentoEngenharia.App_Code.Persistencia
             objCommand.Dispose();
             objConexao.Dispose();
             return true;
-        }
+        }
+
 
     }
 }
