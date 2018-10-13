@@ -61,8 +61,8 @@ namespace WebApplicationFundamentoEngenharia.App_Code.Persistencia
             System.Data.IDbCommand objCommand;
             System.Data.IDataReader objDataReader;
             objConexao = Mapped.Connection();
-            objCommand = Mapped.Command("SELECT * FROM tbl_funcionario WHERE fun_nome = ?nome", objConexao);
-            objCommand.Parameters.Add(Mapped.Parameter("?nome", id));
+            objCommand = Mapped.Command("SELECT * FROM tbl_funcionario WHERE fun_codigo = ?codigo", objConexao);
+            objCommand.Parameters.Add(Mapped.Parameter("?codigo", id));
             objDataReader = objCommand.ExecuteReader();
             while (objDataReader.Read())
             {
@@ -86,12 +86,15 @@ namespace WebApplicationFundamentoEngenharia.App_Code.Persistencia
             System.Data.IDbConnection objConexao;
             System.Data.IDbCommand objCommand;
             string sql = "UPDATE tbl_funcionario SET fun_nome=?nome, fun_salario=?salario, fun_cracha=?cracha WHERE fun_codigo = ?codigo";
-        objConexao = Mapped.Connection();
+
+            objConexao = Mapped.Connection();
             objCommand = Mapped.Command(sql, objConexao);
+
             objCommand.Parameters.Add(Mapped.Parameter("?nome", funcionario.Nome));
             objCommand.Parameters.Add(Mapped.Parameter("?salario", funcionario.Salario));
             objCommand.Parameters.Add(Mapped.Parameter("?cracha", funcionario.Cracha));
             objCommand.Parameters.Add(Mapped.Parameter("?codigo", funcionario.Codigo));
+
             objCommand.ExecuteNonQuery();
             objConexao.Close();
             objCommand.Dispose();
@@ -104,6 +107,7 @@ namespace WebApplicationFundamentoEngenharia.App_Code.Persistencia
             System.Data.IDbConnection objConexao;
             System.Data.IDbCommand objCommand;
             string sql = "DELETE FROM tbl_funcionario WHERE fun_codigo=?codigo";
+
             objConexao = Mapped.Connection();
             objCommand = Mapped.Command(sql, objConexao);
             objCommand.Parameters.Add(Mapped.Parameter("?codigo", id));
