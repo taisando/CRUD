@@ -11,34 +11,36 @@ namespace WebApplicationFundamentoEngenharia.Paginas
 {
     public partial class Alterar : System.Web.UI.Page
     {
-        protected void Page_Load(object sender, EventArgs e)
-        {
-            if (!Page.IsPostBack)
+       
+
+            protected void Page_Load(object sender, EventArgs e)
+            {
+                if (!Page.IsPostBack)
+                {
+                    FuncionarioBD bd = new FuncionarioBD();
+                    Funcionario funcionario = bd.Select(Convert.ToInt32(Session["ID"]));
+                    txtNome.Text = funcionario.Nome;
+                    txtSalario.Text = funcionario.Salario.ToString();
+                    txtCracha.Text = funcionario.Cracha;
+                }
+            }
+
+            protected void btnSalvar_Click(object sender, EventArgs e)
             {
                 FuncionarioBD bd = new FuncionarioBD();
                 Funcionario funcionario = bd.Select(Convert.ToInt32(Session["ID"]));
-                txtNome.Text = funcionario.Nome;
-                txtSalario.Text = funcionario.Salario.ToString();
-                txtCracha.Text = funcionario.Cracha;
-            }
-        }
-
-        protected void btnSalvar_Click(object sender, EventArgs e)
-        {
-            FuncionarioBD bd = new FuncionarioBD();
-            Funcionario funcionario = bd.Select(Convert.ToInt32(Session["ID"]));
-            funcionario.Nome = txtNome.Text;
-            funcionario.Salario = Convert.ToDouble(txtSalario.Text);
-            funcionario.Cracha = txtCracha.Text;
-            if (bd.Update(funcionario))
-            {
-                lblMensagem.Text = "Funcionário alterado com sucesso";
-                txtNome.Focus();
-            }
-            else
-            {
-                lblMensagem.Text = "Erro ao salvar.";
+                funcionario.Nome = txtNome.Text;
+                funcionario.Salario = Convert.ToDouble(txtSalario.Text);
+                funcionario.Cracha = txtCracha.Text;
+                if (bd.Update(funcionario))
+                {
+                    lblMensagem.Text = "Funcionário alterado com sucesso";
+                    txtNome.Focus();
+                }
+                else
+                {
+                    lblMensagem.Text = "Erro ao salvar.";
+                }
             }
         }
     }
-}

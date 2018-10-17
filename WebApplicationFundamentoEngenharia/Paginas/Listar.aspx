@@ -50,7 +50,7 @@
             <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
         </asp:GridView>
         <br />
-        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="cadastrar.aspx">Cadastro de Funcionário</asp:HyperLink>
+        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="Cadastrar.aspx">Cadastro de Funcionário</asp:HyperLink>
     </form>
 </body>
 </html>

@@ -101,7 +101,9 @@ body {
 
 .tm-address-box { padding: 35px 30px 10px; }
 .tm-contact-inner-pad { padding: 25px; }
-.tm-nav-fa { margin-right: 30px; }
+.tm-nav-fa { margin-right: 30px;
+    width: 21px;
+}
 
 .tm-sidebar {
 	float: none;
